@@ -34,15 +34,15 @@ model = pickle.load(open('model.pkl','rb'))
 st.title("Spam Classifier")
 
 input_sms = st.text_input("Enter message")
-
-# data preprocessing :--
-transformed_sms = transform_text(input_sms)
-# vectorization of data :--
-vector_input = tfidf.transform([transformed_sms])
-# prediction :--
-result = model.predict(vector_input)[0]
-# displaying the result :--
-if result == 1:
-    st.header('Spam')
-else:
-    st.header('Not Spam')    
+if st.button('Predict'):
+    # data preprocessing :--
+    transformed_sms = transform_text(input_sms)
+    # vectorization of data :--
+    vector_input = tfidf.transform([transformed_sms])
+    # prediction :--
+    result = model.predict(vector_input)[0]
+    # displaying the result :--
+    if result == 1:
+        st.header('Spam')
+    else:
+        st.header('Not Spam')    
